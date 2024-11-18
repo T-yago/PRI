@@ -1,43 +1,137 @@
 {
-	"add-field-type": [
+    "add-field-type": [
         {
-            "name":"courseTitle",
-            "class":"solr.TextField",
-            "indexAnalyzer":{
-                "tokenizer":{
-                    "class":"solr.StandardTokenizerFactory"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.LowerCaseFilterFactory"}
+            "name": "text_formated",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.ASCIIFoldingFilterFactory", "preserveOriginal": "false" },
+                    { "class": "solr.PorterStemFilterFactory" }
                 ]
             },
-            "queryAnalyzer":{
-                "tokenizer":{
-                    "class":"solr.StandardTokenizerFactory"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.LowerCaseFilterFactory"}
+            "queryAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.ASCIIFoldingFilterFactory", "preserveOriginal": "false" },
+                    { "class": "solr.PorterStemFilterFactory" }
                 ]
             }
-        },
-        {
-            "name": "numStudents",
-            "class": "solr.IntPointField"
         }
     ],
     "add-field": [
         {
-            "name": "title",
-            "type": "courseTitle",
-            "indexed": true
+            "name": "drug_name",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true,
+            "required": true
         },
         {
-            "name": "students",
-            "type": "numStudents",
+            "name": "description",
+            "type": "text_formated",
             "indexed": true,
-            "multiValued": false
+            "stored": true
+        },
+        {
+            "name": "medical_condition",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "medical_condition_description",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "side_effects",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "generic_name",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "drug_classes",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Winner",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "brand_names",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true,
+            "multiValued": true
+        },
+        {
+            "name": "rx_otc",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "pregnancy_category",
+            "type": "text_formated", 
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Description",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "csa",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "alcohol",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Reviews",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "EaseofUse_Mean",
+            "type": "pfloat",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Effectiveness_Mean",
+            "type": "pfloat",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Satisfaction_Mean",
+            "type": "pfloat",
+            "indexed": true,
+            "stored": true
         }
+
     ]
 }
