@@ -5,8 +5,8 @@
 
 # Schema definition via API
 curl -X POST -H 'Content-type:application/json' \
-    --data-binary "@./schema.json" \
+    --data-binary "@schema.json" \
     http://localhost:8983/solr/drugs/schema
 
 # Populate collection using mapped path inside container.
-docker exec -it mia_solr bin/post -c drugs /data/drugs.json
+docker exec -it mia_solr bin/post -c drugs drugs.json
