@@ -1,0 +1,17 @@
+{
+  "query": "headache diarrhea",
+  "params": {
+    "defType": "edismax",
+    "qf": "medical_condition^4.0 description^3.0 medical_condition_description^2.0 side_effects^1.0",
+    "pf": "description^2.0 medical_condition^1.5", 
+    "rows": 50,
+    "ps": 2,
+    "qs": 3,
+    "fl": "medical_condition,score,id",
+    "stopwords": "true",
+    "lowercaseOperators": "true",
+    "bq": "pregnancy_category: \"Animal reproduction studies have shown an adverse effect on the fetus and there are no adequate and well-controlled studies in humans, but potential benefits may warrant use in pregnant women despite potential risks.\"^1.5 pregnancy_category: \"Animal reproduction studies have failed to demonstrate a risk to the fetus and there are no adequate and well-controlled studies in pregnant women.\"^2"
+  }
+  
+}
+
