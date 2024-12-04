@@ -19,6 +19,29 @@
                     { "class": "solr.PorterStemFilterFactory" }
                 ]
             }
+        },
+        {
+            "name": "text_reviews",
+            "class": "solr.TextField",
+            "positionIncrementGap": "100",
+            "indexAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "expand": "true", "ignoreCase": "true" },
+                    { "class": "solr.WordDelimiterGraphFilterFactory", "generateWordParts": "1", "generateNumberParts": "1", "splitOnCaseChange": "1" },
+                    { "class": "solr.RemoveDuplicatesTokenFilterFactory" },
+                    { "class": "solr.PorterStemFilterFactory" }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "expand": "true", "ignoreCase": "true" },
+                    { "class": "solr.PorterStemFilterFactory" }
+                ]
+            }
         }
     ],
     "add-field": [
@@ -66,12 +89,6 @@
             "stored": true
         },
         {
-            "name": "Winner",
-            "type": "text_formated",
-            "indexed": true,
-            "stored": true
-        },
-        {
             "name": "brand_names",
             "type": "text_formated",
             "indexed": true,
@@ -110,7 +127,7 @@
         },
         {
             "name": "Reviews",
-            "type": "text_formated",
+            "type": "text_reviews",
             "indexed": true,
             "stored": true
         },
