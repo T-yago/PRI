@@ -1,0 +1,9 @@
+{
+  "query": "anxiety pregnant",
+  "params": {
+    "defType": "edismax",
+    "qf": "medical_condition description medical_condition_description side_effects Reviews",
+    "rows": 50,
+    "fl": "*,score"  
+  }
+}

@@ -1,0 +1,168 @@
+{
+    "add-field-type": [
+        {
+            "name": "text_formated",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.ASCIIFoldingFilterFactory", "preserveOriginal": "false" },
+                    { "class": "solr.PorterStemFilterFactory" }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.ASCIIFoldingFilterFactory", "preserveOriginal": "false" },
+                    { "class": "solr.PorterStemFilterFactory" }
+                ]
+            }
+        },
+        {
+            "name": "drugsVector",
+            "class": "solr.DenseVectorField",
+            "vectorDimension": 384,
+            "similarityFunction": "cosine",
+            "knnAlgorithm": "hnsw"
+        },
+        {
+            "name": "text_reviews",
+            "class": "solr.TextField",
+            "positionIncrementGap": "100",
+            "indexAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "expand": "true", "ignoreCase": "true" },
+                    { "class": "solr.WordDelimiterGraphFilterFactory", "generateWordParts": "1", "generateNumberParts": "1", "splitOnCaseChange": "1" },
+                    { "class": "solr.RemoveDuplicatesTokenFilterFactory" },
+                    { "class": "solr.PorterStemFilterFactory" }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": { "class": "solr.StandardTokenizerFactory" },
+                "filters": [
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "expand": "true", "ignoreCase": "true" },
+                    { "class": "solr.PorterStemFilterFactory" }
+                ]
+            }
+        }
+    ],
+    "add-field": [
+        {
+            "name": "drug_name",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true,
+            "required": true
+        },
+        {
+            "name": "description",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "medical_condition",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "medical_condition_description",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "side_effects",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "generic_name",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "drug_classes",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "brand_names",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true,
+            "multiValued": true
+        },
+        {
+            "name": "rx_otc",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "pregnancy_category",
+            "type": "text_formated", 
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Description",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "csa",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "alcohol",
+            "type": "text_formated",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Reviews",
+            "type": "text_reviews",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "EaseofUse_Mean",
+            "type": "pfloat",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Effectiveness_Mean",
+            "type": "pfloat",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "Satisfaction_Mean",
+            "type": "pfloat",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "vector",
+            "type": "drugsVector",
+            "indexed": true,
+            "stored": true
+        }
+
+
+    ]
+}

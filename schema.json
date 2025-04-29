@@ -23,7 +23,6 @@
         {
             "name": "text_reviews",
             "class": "solr.TextField",
-            "positionIncrementGap": "100",
             "indexAnalyzer": {
                 "tokenizer": { "class": "solr.StandardTokenizerFactory" },
                 "filters": [
@@ -138,7 +137,7 @@
             "stored": true
         },
         {
-            "name": "Effectiveness_Mean",
+            "name": "   ",
             "type": "pfloat",
             "indexed": true,
             "stored": true
